@@ -1,0 +1,27 @@
+{
+  "id": "fdd7b54c-80fb-45a5-9188-1370640d3b45",
+  "name": "PerformanceTest",
+  "publisher": "4PS B.V.",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "publisher":  "Microsoft",
+      "name":  "Performance Toolkit",
+      "id":  "75f1590f-55c5-4501-ae63-bada5534e852",
+      "version":  "17.0.0.0"
+  }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "18.0.0.0",
+  "contextSensitiveHelpUrl": "https://PerformanceTest.com/help/",
+  "showMyCode": true,
+  "runtime": "7.0"
+}
