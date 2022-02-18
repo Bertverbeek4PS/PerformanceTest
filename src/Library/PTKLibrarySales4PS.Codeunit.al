@@ -1289,7 +1289,7 @@ codeunit 80501 "PTK Library - Sales 4PS"
 
     procedure GetRandomCustomer(var Customer: record Customer)
     begin
-        Customer.SetRange(Blocked, Customer.Blocked::" ");
+        //Customer.SetRange(Blocked, Customer.Blocked::" ");
         if Customer.Next(SessionId MOD Customer.Count()) <> 0 then;
     end;
 

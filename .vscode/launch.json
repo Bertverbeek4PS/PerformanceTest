@@ -2,15 +2,28 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "snapshotInitialize: Microsoft production cloud",
+            "type": "al",
+            "request": "snapshotInitialize",
+            "environmentType": "Sandbox",
+            "environmentName": "nl",
+            "breakOnNext": "WebClient",
+            "executionContext": "DebugAndProfile",
+            "userId": "9605c6d4-5e6a-4d7a-a2c2-289f5e4559b1",
+            "applicationFamily": "4psconstruct"     
+
+        },
+        {
             "name": "Microsoft cloud sandbox",
             "request": "launch",
             "type": "al",
             "environmentType": "Sandbox",
-            "environmentName": "Test",
+            "environmentName": "nl",
             "breakOnError": true,
             "launchBrowser": true,
             "enableLongRunningSqlStatements": true,
-            "enableSqlInformationDebugger": true
+            "enableSqlInformationDebugger": true,
+            "applicationFamily": "4psconstruct"
         }
     ]
 }
