@@ -20,7 +20,7 @@ codeunit 81040 "Patch Customer API"
         BodyJson.WriteTo(BodyTxt);
 
         BCPTTestContext.StartScenario('Patch Customer API');
-        JsonResponse := LibraryGraphMgt.RequestMessage('ADMIN', 'JOMZV7kFLUWy8ozEJo5BV6hXJ5sC96tj+b4b4+l+8IQ=', CreateTargetURL(Customer.SystemId), Method::Patch, BodyTxt);
+        JsonResponse := LibraryGraphMgt.RequestMessage(CreateTargetURL(Customer.SystemId), Method::Patch, BodyTxt);
         BCPTTestContext.EndScenario('Patch Customer API');
         BCPTTestContext.UserWait();
     end;

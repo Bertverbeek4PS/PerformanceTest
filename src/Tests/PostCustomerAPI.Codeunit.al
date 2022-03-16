@@ -19,7 +19,7 @@ codeunit 81039 "Post Customer API"
         BodyJson.WriteTo(BodyTxt);
 
         BCPTTestContext.StartScenario('Post Customer API');
-        JsonResponse := LibraryGraphMgt.RequestMessage('ADMIN', 'JOMZV7kFLUWy8ozEJo5BV6hXJ5sC96tj+b4b4+l+8IQ=', CreateTargetURL(''), Method::Post, BodyTxt);
+        JsonResponse := LibraryGraphMgt.RequestMessage(CreateTargetURL(''), Method::Post, BodyTxt);
         BCPTTestContext.EndScenario('Post Customer API');
         BCPTTestContext.UserWait();
     end;

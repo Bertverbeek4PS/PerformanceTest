@@ -135,4 +135,62 @@ codeunit 80511 "Library - Graph Mgt"
         else
             exit(StringWithBrackets);
     end;
+
+    procedure GetAccessToken(): Text
+    var
+        OAuth2: Codeunit OAuth2;
+        AccessToken: Text;
+        AuthCodeError: Text;
+        Scopes: List of [Text];
+    begin
+        Scopes.Add('https://api.businesscentral.dynamics.com/.default');
+        OAuth2.AcquireTokenWithClientCredentials(
+            'AppId',
+            'SecretID',
+            'https://login.microsoftonline.com/f347666b-e7a9-4dbb-a45f-7836c70d3024/oauth2/v2.0/token',
+            'https://businesscentral.dynamics.com/OAuthLanding.htm',
+            Scopes,
+            AccessToken);
+
+        if (AccessToken = '') or (AuthCodeError <> '') then
+            Error(AuthCodeError);
+
+        exit(AccessToken);
+    end;
+
+    procedure RequestMessage(Uri: Text; Method: Option Get,Post,Patch; Body: Text): JsonObject
+    var
+        Client: HttpClient;
+        RequestMessage: HttpRequestMessage;
+        ResponseMessage: HttpResponseMessage;
+        JsonResponse: JsonObject;
+        AccessToken: Text;
+        JsonContent: Text;
+        Content: HttpContent;
+        ContentHeaders: HttpHeaders;
+    begin
+        AccessToken := GetAccessToken();
+
+        RequestMessage.Method(format(Method));
+        RequestMessage.SetRequestUri(Uri);
+
+        if Method = Method::Post then begin
+            Content.WriteFrom(body);
+            Content.GetHeaders(ContentHeaders);
+            ContentHeaders.Remove('Content-Type');
+            ContentHeaders.Add('Content-Type', 'application/json');
+            RequestMessage.Content(Content);
+        end;
+
+        Client.DefaultRequestHeaders().Add('Authorization', StrSubstNo('Bearer %1', AccessToken));
+        Client.DefaultRequestHeaders().Add('Accept', 'application/json');
+
+        if Client.Send(RequestMessage, ResponseMessage) then begin
+            if ResponseMessage.HttpStatusCode = 200 then begin
+                ResponseMessage.Content.ReadAs(JsonContent);
+                JsonResponse.ReadFrom(JsonContent);
+                exit(JsonResponse);
+            end;
+        end;
+    end;
 }

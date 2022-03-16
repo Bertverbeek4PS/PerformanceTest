@@ -15,7 +15,7 @@ codeunit 81038 "Get Customer API"
         Customer.Get('10000');
         //LibrarySales.GetRandomCustomer(Customer);
         BCPTTestContext.StartScenario('Get Customer API');
-        JsonResponse := LibraryGraphMgt.RequestMessage('ADMIN', 'JOMZV7kFLUWy8ozEJo5BV6hXJ5sC96tj+b4b4+l+8IQ=', CreateTargetURL(Customer.SystemId), Method::Get, '');
+        JsonResponse := LibraryGraphMgt.RequestMessage(CreateTargetURL(Customer.SystemId), Method::Get, '');
         BCPTTestContext.EndScenario('Get Customer API');
         BCPTTestContext.UserWait();
     end;
